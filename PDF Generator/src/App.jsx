@@ -7,6 +7,7 @@ const App = () => {
   const [address, setAddress] = useState("");
   const [photo, setPhoto] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handlePhotoChange = (e) => {
     const selectedPhoto = e.target.files[0];
@@ -14,6 +15,8 @@ const App = () => {
   };
 
   const handleUpload = async () => {
+    setLoading(true); // Set loading to true during the upload process
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("age", age);
@@ -37,6 +40,8 @@ const App = () => {
       handlePreview();
     } catch (error) {
       console.error("Error uploading data:", error);
+    } finally {
+      setLoading(false); // Set loading back to false when the process is complete
     }
   };
 
@@ -95,7 +100,7 @@ const App = () => {
         />
       </div>
       <button className="upload-button" onClick={handleUpload}>
-        Upload
+        {loading ? "Uploading..." : "Upload"}
       </button>
 
       {userDetails && (
