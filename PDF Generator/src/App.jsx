@@ -24,7 +24,7 @@ const App = () => {
     formData.append("photo", photo);
 
     try {
-      const response = await fetch("http://localhost:8000/new/add", {
+      const response = await fetch("https://pdf-generator-or47.onrender.com/new/add", {
         method: "POST",
         body: formData,
       });
@@ -47,7 +47,7 @@ const App = () => {
 
   const handlePreview = async () => {
     try {
-      const response = await fetch("http://localhost:8000/new/view");
+      const response = await fetch("https://pdf-generator-or47.onrender.com/new/view");
       const responseData = await response.json();
       setUserDetails(responseData.details);
     } catch (error) {
@@ -58,7 +58,7 @@ const App = () => {
   const handleDownloadPDF = async () => {
     try {
       // Open the PDF in a new tab/window
-      window.open("http://localhost:8000/new/download", "_blank");
+      window.open("https://pdf-generator-or47.onrender.com/new/download", "_blank");
     } catch (error) {
       console.error("Error downloading PDF:", error);
     }
